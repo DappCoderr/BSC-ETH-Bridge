@@ -18,11 +18,11 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-// const infuraKey = "fj4jll3k.....";
-//
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const infuraKey = "2a78cf2f77b9413a86e2a0bb17dcf402";
+
 // const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const mnemonic = '8d990f92c953aa9985aa41ffc4d937e20fa8ccfaae459f52458d402bfbda1916';
 
 module.exports = {
   /**
@@ -36,6 +36,16 @@ module.exports = {
    */
 
   networks: {
+    ethTestnet: {
+      provider: () => new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/2a78cf2f77b9413a86e2a0bb17dcf402',0,1),
+      network_id: 4, //rinkeby
+      skipDryRun: true
+    },
+    bscTestnet: {
+      provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s1.binance.org:8545'),
+      network_id: 97,
+      skipDryRun: true
+    },
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
     // You should run a client (like ganache-cli, geth or parity) in a separate terminal
@@ -82,7 +92,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.0",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
